@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1047618523656",
+    "project_id": "shop-appkotlin",
+    "storage_bucket": "shop-appkotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047618523656:android:3274983e508f001be277bd",
+        "android_client_info": {
+          "package_name": "duyndph34554.fpoly.shop_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdMhMpEkwe_qCx3SmSXQX9_UCBr2NhD6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
