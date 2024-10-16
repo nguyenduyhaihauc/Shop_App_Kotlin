@@ -3,9 +3,13 @@ package duyndph34554.fpoly.shop_app.Activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import duyndph34554.fpoly.shop_app.Adapter.BestSellerAdapter
+import duyndph34554.fpoly.shop_app.Adapter.CategoryAdapter
 import duyndph34554.fpoly.shop_app.Adapter.SliderAdepter
 import duyndph34554.fpoly.shop_app.Model.SliderModel
 import duyndph34554.fpoly.shop_app.ViewModel.MainViewModel
@@ -22,9 +26,35 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
 
         initBanner()
+        initCategories()
+        initBestSeller()
     }
 
-//    Khoi tao quan ly viec hien thi Banner su dung kien truc MVVM
+//    Hien thi Best Seller len UI
+    private fun initBestSeller() {
+        binding.progressBarBestSeller.visibility = View.VISIBLE
+
+        viewMolder.bestSeller.observe(this, {
+            binding.viewBestSeller.layoutManager =
+                GridLayoutManager(this@MainActivity, 2)
+            binding.viewBestSeller.adapter = BestSellerAdapter(it)
+            binding.progressBarBestSeller.visibility = View.GONE
+        })
+        viewMolder.loadBestSeller()
+    }
+
+    private fun initCategories() {
+        binding.progressBarCategory.visibility = View.VISIBLE
+        viewMolder.category.observe(this, {
+            binding.viewCategory.layoutManager =
+                LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            binding.viewCategory.adapter = CategoryAdapter(it)
+            binding.progressBarCategory.visibility = View.GONE
+        })
+        viewMolder.loadCategory()
+    }
+
+    //    Khoi tao quan ly viec hien thi Banner su dung kien truc MVVM
 //    voi LiveData de quan sat du lieu tu ViewModel va cap nhat len UI
     private fun initBanner() {
 //        Hien thi loading bieu thi du lieu dang duoc tai ve

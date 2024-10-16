@@ -7,6 +7,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import duyndph34554.fpoly.shop_app.Model.CategoryModel
+import duyndph34554.fpoly.shop_app.Model.ItemModel
 import duyndph34554.fpoly.shop_app.Model.SliderModel
 
 class MainViewModel:ViewModel() {
@@ -18,8 +20,12 @@ class MainViewModel:ViewModel() {
 //    MutableLiveData la 1 phien ban mo rong cua LiveData de quan ly du lieu
 //    giup thanh phan giao nguoi dung co the phan hoi theo cach thay doi tu dong
     private val _banner = MutableLiveData<List<SliderModel>>()
+    private val _category = MutableLiveData<MutableList<CategoryModel>>()
+    private val _bestSeller = MutableLiveData<MutableList<ItemModel>>()
 
     val banners:LiveData<List<SliderModel>> = _banner
+    val category:LiveData<MutableList<CategoryModel>> = _category
+    val bestSeller:LiveData<MutableList<ItemModel>> = _bestSeller
 
 //    Load du lieu tu Firebase Realtime Database
     fun loadBanners() {
@@ -46,6 +52,61 @@ class MainViewModel:ViewModel() {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
+        })
+    }
+
+//    Loading Data tu FireBase Realtime Database
+    fun loadCategory() {
+//        Tham chieu den node "Category" trong Firebase Realtime Database
+        val Ref = firebaseDatabase.getReference("Category")
+//    Lang nghe su thay doi tu Firebase Realtime Database
+        Ref.addValueEventListener(object: ValueEventListener{
+//            Ham duoc goi khi co su thay doi
+            override fun onDataChange(snapshot: DataSnapshot) {
+//                Tao ds rong de chua data
+                val lists = mutableListOf<CategoryModel>()
+
+                for (childSnapshot in snapshot.children) {
+//                    Chuyen doi du lieu tu Firebase sang doi tuong Category
+                    val list = childSnapshot.getValue(CategoryModel::class.java)
+                    if (list != null) {
+                        lists.add(list)
+                    }
+                }
+                _category.value = lists
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+//    Loading data Best Seller
+    fun loadBestSeller() {
+//        Tham chieu den node "Items" trong Firebase Realtime Database
+        val Ref = firebaseDatabase.getReference("Items")
+//    Lang nghe su thay doi
+        Ref.addValueEventListener(object: ValueEventListener{
+//            Ham nay duoc goi khi co su thay doi
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val lists = mutableListOf<ItemModel>()
+
+                for (childSnapshot in snapshot.children) {
+//                    Chuyen doi du lieu tu Firebase sang doi tuong BestSeller
+                    val list = childSnapshot.getValue(ItemModel::class.java)
+                    if (list != null) {
+                        lists.add(list)
+                    }
+                }
+                _bestSeller.value = lists
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
         })
     }
 }
