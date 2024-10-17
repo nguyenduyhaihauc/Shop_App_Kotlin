@@ -1,5 +1,6 @@
 package duyndph34554.fpoly.shop_app.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -28,9 +29,20 @@ class MainActivity : BaseActivity() {
         initBanner()
         initCategories()
         initBestSeller()
+        bottomNavigation()
     }
 
-//    Hien thi Best Seller len UI
+    private fun bottomNavigation() {
+        binding.cartBtn.setOnClickListener {
+            startActivity(Intent(this@MainActivity, CartActivity::class.java))
+        }
+
+        binding.favoriteBtn.setOnClickListener {
+            startActivity(Intent(this@MainActivity, FavoriteActivity::class.java))
+        }
+    }
+
+    //    Hien thi Best Seller len UI
     private fun initBestSeller() {
         binding.progressBarBestSeller.visibility = View.VISIBLE
 
