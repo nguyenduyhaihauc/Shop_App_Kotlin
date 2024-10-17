@@ -1,12 +1,14 @@
 package duyndph34554.fpoly.shop_app.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestOptions
+import duyndph34554.fpoly.shop_app.Activity.DetailActivity
 import duyndph34554.fpoly.shop_app.Model.ItemModel
 import duyndph34554.fpoly.shop_app.databinding.ViewholderBestSellerBinding
 
@@ -42,6 +44,13 @@ class BestSellerAdapter(val items: MutableList<ItemModel>): RecyclerView.Adapter
             .load(items[position].picUrl[0])
             .apply(requestOptions)
             .into(holder.binding.picBestSeller)
+
+//    Gui du lieu qua Detail Item Activity voi Object "object"
+        holder.itemView.setOnClickListener {
+            val  intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            intent.putExtra("object", items[position])
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = items.size
