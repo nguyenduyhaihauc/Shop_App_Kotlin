@@ -2,16 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+<!--    largeHeap - yeu cau he thong cap them bo nho khi xu ly nhung tac vu lon
+        Tuy nhien khong nen loi dung vi no anh huong den hieu suat-->
+
+<!--    hardwareAccelerated == false - tat CPU xu ly do hoa-->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
+        android:hardwareAccelerated="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shop_App"
         tools:targetApi="31">
+        <activity
+            android:name=".Activity.DetailActivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.BaseActivity"
             android:exported="false" />
