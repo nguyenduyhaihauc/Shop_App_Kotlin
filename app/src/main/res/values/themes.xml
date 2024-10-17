@@ -9,4 +9,9 @@
 <!--        Thanh dieu huong se co hieu ung trong suot -->
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
+    
+    <style name="CircleImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
