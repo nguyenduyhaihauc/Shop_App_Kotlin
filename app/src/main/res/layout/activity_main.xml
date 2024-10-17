@@ -316,6 +316,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/cartBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
@@ -339,6 +340,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/favoriteBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
@@ -362,6 +364,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/oderBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
@@ -385,6 +388,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/profileBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
